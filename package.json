@@ -1,0 +1,57 @@
+{
+  "name": "chaggie",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && node -e \"require('fs').copyFileSync('electron/xpreload.js','dist-electron/xpreload.js')\"",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "dist": "npm run build && electron-builder"
+  },
+  "build": {
+    "appId": "com.cortrae.chaggie",
+    "productName": "Chaggie",
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/electron-vite.svg"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "dist-electron/**/*"
+    ]
+  },
+  "dependencies": {
+    "electron-store": "^11.0.2",
+    "googleapis": "^173.0.0",
+    "pusher-js": "^8.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tmi.js": "^1.8.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "electron": "^32.3.3",
+    "electron-builder": "^26.15.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^8.0.16",
+    "vite-plugin-electron": "^0.28.6",
+    "vite-plugin-electron-renderer": "^1.0.0"
+  },
+  "main": "dist-electron/main.js"
+}
